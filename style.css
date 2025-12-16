@@ -1,34 +1,43 @@
+/* =======================
+   GLOBAL STYLES
+======================= */
 html, body {
   margin: 0;
   padding: 0;
-  font-family: "Aptos", sans-serif;
+  font-family: "Roboto";
   background: #fff;
   height: 100vh;
   overflow: hidden;
 }
 
-/* === OSNOVNA POSTAVITEV === */
+/* =======================
+   MAIN LAYOUT
+======================= */
 #layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
+  grid-template-columns: 0.4fr 0.6fr;
+  height: 100vh; /* full viewport height */
 }
 
-/* === LEVI PANEL === */
+/* =======================
+   LEFT PANEL
+======================= */
 #left-panel {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 100px;
   box-sizing: border-box;
+  height: 100%;
+  overflow: hidden; /* prevent map stretching */
 }
 
+/* Header inside left panel */
 #header {
   flex-shrink: 0;
 }
 
 h1 {
-  font-family: "Times New Roman", serif;
   font-size: 40px;
   color: #222;
 }
@@ -38,90 +47,178 @@ span {
 }
 
 #intro {
-  font-family: "Aptos", sans-serif;
   text-align: justify;
+  font-size: 14px;
   color: #555;
   line-height: 1.2em;
 }
 
+/* Map container */
 #map {
   flex-grow: 1;
   width: 100%;
   height: 100%;
   background: #f9f9f9;
-  margin-top: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-top: 10px;
   overflow: hidden;
 }
 
-/* === DESNI PANEL === */
+/* Map legend */
+#map-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 10px;
+  color: #555;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-circle {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+/* =======================
+   RIGHT PANEL
+======================= */
 #right-panel {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 40px 60px 40px 40px;
+  padding: 50px 60px 40px 40px;
   box-sizing: border-box;
   background: #fafafa;
   border-left: 1px solid #ddd;
+  height: 100%;
+  overflow-y: auto; /* allow vertical scrolling */
+  overflow-x: hidden;
 }
 
-#chart-header {
+/* Chart title and controls wrapper */
+#chart-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  padding: 0;
+}
+
+/* Chart title */
+#chart-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+/* Chart header: select + checkboxes */
+
+#chart-header .row {
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 10px;
-  padding: 8px 0;
-  margin-bottom: 20px;
-  width: 100%;
-  border-bottom: 1px solid #ccc; /* tanka vodoravna črta */
-  font-family: "Aptos", sans-serif;
+  color: #555;
+}
+
+#chart-header .row label {
+  width: 130px; /* fixed label width */
+  color: #555;
+}
+
+#metric,
+#weather-attr-select {
+  width: 360px;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 5px;
+  font-size: 14px;
   color: #333;
+  cursor: pointer;
 }
 
 #chart-header label {
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: 0.3px;
 }
 
-#metric {
-  background: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px 10px;
-  font-family: "Aptos", sans-serif;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.2s ease;
+/* Toggle metrics checkbox */
+
+#toggle-metrics label {
+  margin-left: 10px;
+  align-items: center;
+  gap: 4px;
 }
 
+#toggle-metrics input {
+  margin-right: 4px;
+}
+
+#toggle-metrics input[type="checkbox"]:checked {
+  accent-color: #000;
+}
+
+/* Chart container */
 #chart {
   flex-grow: 1;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  margin-top: 24px;
 }
 
-/* === Tooltip === */
+/* =======================
+   TOOLTIP
+======================= */
 .tooltip {
   position: absolute;
   pointer-events: none;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid #ccc;
-  padding: 6px 10px;
+  padding: 8px 10px;
   border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   font-size: 13px;
   color: #333;
 }
 
+/* =======================
+   SVG TEXT OVERRIDES
+======================= */
 svg text {
-  font-family: "Aptos", sans-serif;
   font-size: 12px;
 }
 
 .legend text {
   fill: #333;
+}
+
+.axis-label {
+  font-size: 14px;
+  font-weight: 500;
+  fill: #333;
+}
+
+/* =======================
+   CREDITS
+======================= */
+#credits {
+  position: fixed;
+  bottom: 8px;
+  left: 8px;
+  font-size: 11px;
+  color: #666;
+  opacity: 0.8;
+  font-family: sans-serif;
+  pointer-events: none;
 }

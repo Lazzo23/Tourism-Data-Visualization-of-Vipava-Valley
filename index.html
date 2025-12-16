@@ -10,31 +10,53 @@
 </head>
 <body>
   <div id="layout">
-    <!-- LEVA STRAN: Naslov, besedilo, zemljevid -->
     <div id="left-panel">
       <div id="header">
-        <h1>Tourism Data Visualization of <span>Vipava Valley</span></h1>
+        <h1>Tourism Data Visualization of Vipava Valley</h1>
         <p id="intro">
-          Nestled between the Karst Plateau and the Trnovo Forest, the <b>Vipava Valley</b> is one of Slovenia’s most diverse and inviting regions. Shaped by the gentle Vipava River and sheltered by surrounding hills, it enjoys a mild Mediterranean climate that nurtures vineyards, orchards, and olive groves. Tourism in the valley thrives on its natural beauty, wine culture, and outdoor activities, from hiking and cycling to paragliding above the emerald landscapes.<br>
-
-          This visualization explores tourism dynamics across six municipalities that form the heart of the valley: <i>Ajdovščina</i>, <i>Vipava</i>, <i>Nova Gorica</i>, <i>Miren-Kostanjevica</i>, <i>Renče-Vogrsko</i>, and <i>Šempeter-Vrtojba</i>. Each community offers a unique blend of tradition and innovation, contributing to the region’s growing appeal among both domestic and international visitors.
-
+          The Vipava Valley is shaped by a mild Mediterranean climate and diverse landscapes that support rich outdoor and cultural tourism. This visualization presents key tourism patterns across six municipalities: <b>Ajdovščina</b>, <b>Vipava</b>, <b>Nova Gorica</b>, <b>Miren-Kostanjevica</b>, <b>Renče-Vogrsko</b>, and <b>Šempeter-Vrtojba</b>. It highlights monthly arrivals, overnight stays, and related weather data, allowing users to explore how different factors influence tourism dynamics in the region.
         </p>
       </div>
       <div id="map"></div>
+      <div id="map-legend">
+        <div class="legend-item">
+          <div class="legend-circle"></div>
+          <text>Weather Station</text>
+        </div>
+      </div>
     </div>
 
-    <!-- DESNA STRAN: Linijski graf + meni -->
     <div id="right-panel">
-      <div id="chart-header">
-        <label for="metric">Select country:</label>
-        <select id="metric"></select>
+      <div id="chart-controls">
+        <h2 id="chart-title">Tourism Trends</h2>
+        <div id="chart-header">
+          <div class="row">
+            <label for="metric">Select country:</label>
+            <select id="metric"></select>
+            <div id="toggle-metrics">
+              <label><input type="checkbox" id="toggle-arrivals" checked>Arrivals</label>
+              <label><input type="checkbox" id="toggle-overnights" checked>Overnights</label>
+              <label><input type="checkbox" id="toggle-averagestays">Average stay</label>
+              <label><input type="checkbox" id="toggle-beds">Beds (yearly)</label>
+            </div>
+          </div>
+          <div class="row">
+            <label id="weather-attr-select-label" style="display:none;">Select weather data:</label>
+            <select id="weather-attr-select" style="display:none;"></select>
+            <div id="toggle-metrics">
+              <label id="label-weather" style="display:none;"><input type="checkbox" id="toggle-weather" checked>Show</label>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="chart"></div>
     </div>
+  <div id="tooltip" class="tooltip" style="display:none;"></div>
+
+  <div id="credits">
+    Miha Lazić and Luka Gulič, Interaction and Information Design, 2025/26, FRI Ljubljana.
   </div>
 
-  <div id="tooltip" class="tooltip" style="display:none;"></div>
   <script src="script.js"></script>
 </body>
 </html>
