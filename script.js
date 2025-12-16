@@ -466,7 +466,7 @@ function updateMap(geo, nameKey) {
         .style("display", "block")
         .style("left", `${event.pageX + 10}px`)
         .style("top", `${event.pageY - 10}px`)
-        .html(`${d.name} (${d.alttitude} m)`);
+        .html(`${d.name} (${d.altitude} m)`);
     })
 
     .on("mouseleave", function (event, d) {
